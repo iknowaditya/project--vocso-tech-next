@@ -10,6 +10,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Hello from the backend!");
+});
+
 // Email transporter setup (using Gmail)
 const transporter = nodemailer.createTransport({
   service: "gmail",
