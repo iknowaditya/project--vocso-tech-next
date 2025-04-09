@@ -1,67 +1,6 @@
-// import { useUser } from "@auth0/nextjs-auth0/client";
-// import { useEffect } from "react";
-
-// export default function Home() {
-//   const { user, error, isLoading } = useUser();
-
-//   useEffect(() => {
-//     const sendTokenToBackend = async () => {
-//       if (user) {
-//         console.log("User logged in:", user);
-//         try {
-//           // Fetch the access token from /api/auth/access-token (custom endpoint)
-//           const response = await fetch("/api/auth/access-token", {
-//             headers: { "Content-Type": "application/json" },
-//           });
-//           const { accessToken } = await response.json();
-//           console.log("Access Token:", accessToken);
-
-//           if (accessToken) {
-//             console.log("Sending to backend:", {
-//               token: accessToken,
-//               email: user.email,
-//             });
-//             const backendResponse = await fetch(
-//               `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/callback`,
-//               {
-//                 method: "POST",
-//                 headers: { "Content-Type": "application/json" },
-//                 body: JSON.stringify({ token: accessToken, email: user.email }),
-//               }
-//             );
-//             const result = await backendResponse.json();
-//             console.log("Backend response:", result);
-//           } else {
-//             console.log("No access token received");
-//           }
-//         } catch (err) {
-//           console.error("Error in sendTokenToBackend:", err);
-//         }
-//       }
-//     };
-//     sendTokenToBackend();
-//   }, [user]);
-
-//   if (isLoading) return <div>Loading...</div>;
-//   if (error) return <div>{error.message}</div>;
-
-//   return (
-//     <div style={{ padding: "20px" }}>
-//       <h1>Auth0 Login Demo</h1>
-//       {user ? (
-//         <div>
-//           <p>Welcome, {user.email}!</p>
-//           <a href="/api/auth/logout">Log Out</a>
-//         </div>
-//       ) : (
-//         <a href="/api/auth/login">Log In</a>
-//       )}
-//     </div>
-//   );
-// }
-
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
@@ -139,12 +78,12 @@ export default function Home() {
           </h1>
           <p className="text-slate-300 mb-6 text-center">{error.message}</p>
           <div className="flex justify-center">
-            <a
+            <Link
               href="/api/auth/login"
               className="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-teal-500/20"
             >
               Try Again
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -181,12 +120,12 @@ export default function Home() {
               </h2>
               <p className="text-slate-300 mb-6">{user.email}</p>
               <div className="flex justify-center">
-                <a
+                <Link
                   href="/api/auth/logout"
                   className="px-6 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-rose-500/20"
                 >
                   Sign Out
-                </a>
+                </Link>
               </div>
             </div>
           ) : (
@@ -210,12 +149,12 @@ export default function Home() {
               <h2 className="text-xl font-semibold text-teal-200 mb-4">
                 Secure Access
               </h2>
-              <a
+              <Link
                 href="/api/auth/login"
                 className="block w-full px-6 py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-teal-500/30"
               >
                 Login / Register
-              </a>
+              </Link>
             </div>
           )}
         </div>
