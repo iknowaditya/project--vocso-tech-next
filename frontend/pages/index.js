@@ -82,7 +82,7 @@ export default function Home() {
               href="/api/auth/login"
               className="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-teal-500/20"
             >
-              Try Again
+              Got Some Error Try Again..
             </Link>
           </div>
         </div>
